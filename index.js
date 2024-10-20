@@ -38,7 +38,6 @@ const userSchema = new mongoose.Schema({
 const User = mongoose.model('User', userSchema);
 module.exports = User;
 
-
 // user post
 app.post('/register', async (req, res) => {
   try {
@@ -59,6 +58,11 @@ app.post('/login', async (req, res) => {
   }
 
   res.send({ message: 'Login user successfully.' });
+});
+
+app.get('/user', async (req, res) => {
+  const user = await User.find();
+  res.send(user);
 });
 
 app.listen(port, () => {
